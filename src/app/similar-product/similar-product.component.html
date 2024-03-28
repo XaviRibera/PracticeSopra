@@ -1,0 +1,6 @@
+<div class="c-similar-product c-similar-product@desktop" (click)="clickedShowProduct(similarProduct.id)">
+  <img src="../assets/{{similarProduct.id}}.png" alt="" class="c-similar-product__img">
+  <span class="c-similar-product__title">{{similarProduct.product}}</span>
+  <span class="c-similar-product__stars"><span *ngFor="let star of [1,2,3,4,5]">{{(star <= similarProduct.rating) ? '★' : '✩'}}</span></span>
+  <span class="c-similar-product__price">{{similarProduct.price}}{{similarProduct.currency}}</span>
+</div>

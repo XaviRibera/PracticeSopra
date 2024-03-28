@@ -1,0 +1,7 @@
+<div class="c-card-review c-card-review@tablet c-card-review@desktop">
+  <div class="c-card-review__profile"><i class="bi bi-person-square"></i></div>
+  <div class="c-card-review__nickname">{{review.name}}</div>
+  <div class="c-card-review__date">{{review.date}}</div>
+  <div class="c-card-review__stars">{{review.rating}} <span *ngFor="let star of [1,2,3,4,5]">{{(star <= review.rating) ? '★' : '✩'}}</span></div>
+  <div class="c-card-review__review c-card-review__review@tablet">{{review.opinion}}</div>
+</div>

@@ -1,0 +1,35 @@
+.c-similar-product{
+  display: grid;
+  grid-template-areas: "img"
+                        "title"
+                        "stars"
+                        "price";
+  padding: 10px;
+  cursor: pointer;
+
+  @media(min-width:890px){
+    &\@desktop{
+      grid-template-areas: "img title"
+                            "img stars"
+                            "img price";
+    }
+  }
+
+  &__img{
+    grid-area: img;
+    width: 50px;
+    margin: 10px;
+  }
+
+  &__stars{
+    grid-area: stars;
+  }
+
+  &__price{
+    grid-area: price;
+  }
+
+  &__title{
+    grid-area: title;
+  }
+}

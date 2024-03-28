@@ -1,0 +1,55 @@
+.c-card-review{
+  display: grid;
+  grid-template-areas: "profile nickname"
+                        "profile stars"
+                        "profile date";
+
+  @media(min-width: 890px){
+    &\@tablet{
+      grid-template-areas: "profile nickname review"
+                          "profile stars review"
+                          "profile date review";
+    }
+  }
+
+  @media(min-width: 1000px) {
+    &\@desktop{
+      grid-template-areas: "profile nickname stars"
+                          "review review review"
+                          "date date date";
+    }
+  }
+
+  &__profile{
+    grid-area: profile;
+    font-size:xxx-large;
+    margin: 5px;
+    margin-right: 25px;
+  }
+
+  &__nickname{
+    grid-area: nickname;
+  }
+
+  &__date{
+    grid-area: date;
+  }
+
+  &__stars{
+    grid-area:stars;
+  }
+
+  &__review{
+    grid-area: review;
+    padding: 15px;
+    display: none;
+
+    @media(min-width:890px){
+    &\@tablet{
+      display: flex;
+    }
+  }
+  }
+
+
+}

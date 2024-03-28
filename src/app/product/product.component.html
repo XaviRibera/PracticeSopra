@@ -1,0 +1,8 @@
+<div class="c-product c-product@tablet m-4 p-3">
+  <img src="../assets/{{product.id}}.png" alt="product" class="c-product__img">
+  <div class="c-product__title"><h3>{{product.product}}</h3></div>
+  <div class="c-product__price"><h4>{{product.price}}{{product.currency}}</h4></div>
+  <div class="c-product__stars">{{product.rating}} <span class="c-individual-star" *ngFor="let star of [1,2,3,4,5]" (click)="clickedStarRating(product.id, star)">{{(star <= product.rating) ? '★' : '✩'}}</span></div>
+  <div class="c-product__description">{{product.description}}<hr class="w-25"></div>
+  <div class="c-product__delete"><div class="btn btn-danger" (click)="clickedDeleteProduct(product.id)"><i class="bi bi-trash3"></i></div></div>
+</div>
