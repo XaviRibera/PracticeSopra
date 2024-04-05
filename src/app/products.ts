@@ -4,7 +4,7 @@ export const productData = [
     product: 'Tomaco',
     price: 1000,
     currency: '€',
-    rating: 4.8,
+    rating: 1,
     description:
       'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes.',
     favorite: false,

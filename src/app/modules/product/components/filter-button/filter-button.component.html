@@ -1,0 +1,7 @@
+<div
+  class="btn m-1 w-100"
+  (click)="onChangeFilter(filterType)"
+  [ngClass]="isPicked ? 'btn-primary' : 'btn-secondary'"
+>
+  Filter {{ filterType }}
+</div>

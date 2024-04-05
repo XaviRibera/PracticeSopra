@@ -1,0 +1,24 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 col-md-3 p-0 m-0">
+      <app-sidebar
+        [productsList]="productsWithFilter"
+        (showProductPipe)="showProduct($event)"
+        (changeFilterPipe)="applyFilter($event)"
+        [filtersList]="filtersList"
+        [activeFilter]="activeFilter"
+      ></app-sidebar>
+    </div>
+    <div class="col-12 col-md-9" [ngClass]="productInUse.favorite ? 'bg-secondary text-light' : ''">
+      <app-detail-product
+        [product]="productInUse"
+        (deleteProduct)="deleteProduct($event)"
+        (changeFavorite)="changeFavorite($event)"
+      ></app-detail-product>
+      <app-similar-product-section
+        [product]="productInUse"
+      ></app-similar-product-section>
+      <app-review-section [product]="productInUse"></app-review-section>
+    </div>
+  </div>
+</div>

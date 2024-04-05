@@ -1,0 +1,9 @@
+<div class="m-auto p-3" *ngIf="product.similarProducts?.length">
+  <hr>
+  <h3 class="text-center">Similar products</h3>
+  <div class="d-flex flex-wrap justify-content-around">
+    <div *ngFor="let similarProduct of product.similarProducts">
+      <app-similar-product [similarProduct]="similarProduct"></app-similar-product>
+    </div>
+  </div>
+</div>

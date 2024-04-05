@@ -1,0 +1,8 @@
+<div class="border-bottom p-3" *ngIf="product.reviews?.length">
+        <hr>
+        <h3>Reviews</h3>
+        <div *ngFor="let productReview of product.reviews">
+          <app-review [review]="productReview"></app-review>
+          <hr class="w-25">
+        </div>
+      </div>
