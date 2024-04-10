@@ -29,8 +29,8 @@ export class StarsRatingComponent {
 
   private ngOnChanges() {
     this.truncRating = this.calculateFillStars();
-    this.refillFillStars();
     this.changeStarColor();
+    this.refillFillStars();
   }
 
   private changeStarColor() {
@@ -47,6 +47,7 @@ export class StarsRatingComponent {
   }
 
   private refillFillStars() {
+    this.setEmptyStarsInAllStars();
     this.setFillStars();
     this.setHalfStar();
   }

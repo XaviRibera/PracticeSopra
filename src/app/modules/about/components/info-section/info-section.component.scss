@@ -1,0 +1,36 @@
+.c-about-section {
+  display: grid;
+  justify-content: center;
+  text-align: center;
+  background-color: hsl(216, 100%, 91%);
+  height: 250px;
+  padding: 20px;
+
+  grid-template-areas:
+    "title"
+    "form-var"
+    "description"
+    "description";
+
+  &--t-d-i{
+    grid-template-areas:
+    "title"
+    "description"
+    "description"
+    "form-var";
+  }
+
+  &__title{
+    grid-area: title;
+    font-weight: bold;
+  }
+
+  &__form-var{
+    grid-area: form-var;
+  }
+
+  &__description{
+    grid-area: description;
+    font-size: small;
+  }
+}

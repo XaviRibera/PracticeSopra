@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { productData } from 'src/app/products';
+import { productData } from 'src/app/data/products';
 import { FilterType } from './model/filter';
 import { Product } from './model/product';
 

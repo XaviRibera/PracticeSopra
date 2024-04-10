@@ -9,7 +9,7 @@ import { ReviewComponent } from './components/review/review.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { SimilarProductSectionComponent } from './components/similar-product-section/similar-product-section.component';
 import { SimilarProductComponent } from './components/similar-product/similar-product.component';
-import { StarsRatingComponent } from './components/stars-rating/stars-rating.component';
+import { StarsRatingComponent } from '../../shared/stars-rating/stars-rating.component';
 import { ProductRoutingModule } from './product-routing.module';
 
 @NgModule({

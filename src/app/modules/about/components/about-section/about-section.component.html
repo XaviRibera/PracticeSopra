@@ -1,0 +1,10 @@
+<div class="p-5">
+  <div class=" d-flex justify-content-center p-3 pb-5">
+    <h2>About us</h2>
+  </div>
+  <div class="d-flex flex-lg-row flex-column justify-content-between gap-4">
+    <div *ngFor="let card of cardAbout">
+      <app-description-card [cardDescription]="card" class="d-flex"></app-description-card>
+    </div>
+  </div>
+</div>
