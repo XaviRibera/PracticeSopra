@@ -2,16 +2,16 @@
   display: grid;
   grid-template-areas:  "img img img"
                         "title title price"
-                        "stars . ."
+                        "stars . favorite"
                         "description description description"
-                        "delete delete favorite";
+                        "delete delete buy";
 
   @media(min-width:890px){
     &\@tablet{
       grid-template-areas: "img title price"
-                            "img stars ."
+                            "img stars favorite"
                             "img description description"
-                            "img delete favorite";
+                            "img delete buy";
     }
   }
 
@@ -48,6 +48,10 @@
   &__favorite{
     grid-area: favorite;
     text-align: right;
+  }
+
+  &__buy{
+    grid-area: buy;
   }
 }
 

@@ -10,16 +10,16 @@ import { AboutRoutingModule } from './about-routing.module';
 
 
 @NgModule({
-  declarations: [
-    AboutComponent,
-    InfoSectionComponent,
-    AboutSectionComponent,
-    FormVarComponent,
-    DescriptionCardComponent
-  ],
-  imports: [
-    CommonModule,
-    AboutRoutingModule
-  ]
+    declarations: [
+        AboutComponent,
+        InfoSectionComponent,
+        AboutSectionComponent,
+        DescriptionCardComponent
+    ],
+    imports: [
+        CommonModule,
+        AboutRoutingModule,
+        FormVarComponent
+    ]
 })
 export class AboutModule { }

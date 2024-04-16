@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { productData } from 'src/app/data/products';
-import { FilterType } from './model/filter';
-import { Product } from './model/product';
+import { FilterType } from '../../model/filter';
+import { Product } from '../../model/product';
+import { ProductService } from 'src/app/services/product/product.service';
+import { Subscription } from 'rxjs';
+import { CartService } from 'src/app/services/cart/cart.service';
 
 type filters = 'reset' | 'expensive' | 'cheap' | 'priceLower';
 
@@ -24,8 +26,11 @@ export class ProductComponent {
     'priceHigher',
     'reset',
   ];
+  private productServiceSubscription: Subscription | null = null;
 
-  constructor() {
+  constructor(private productService: ProductService, private cartService: CartService) {}
+
+  ngOnInit() {
     this.chargeDataBase();
   }
 
@@ -35,6 +40,10 @@ export class ProductComponent {
 
   showFirstProductInList() {
     this.showProduct(this.productsWithFilter[this.defaultIndexProduct]);
+  }
+
+  addToCart(product: Product){
+    this.cartService.insertProductInCart(product);
   }
 
   deleteProduct(product: Product) {
@@ -48,6 +57,10 @@ export class ProductComponent {
 
   applyFilter(filter: string) {
     this.changeFilter[filter as filters]();
+  }
+
+  changeFavorite(product: Product) {
+    product.favorite = !product.favorite;
   }
 
   private expensiveFilter() {
@@ -88,16 +101,15 @@ export class ProductComponent {
     this.showFirstProductInList();
   }
 
-  changeFavorite(product: Product) {
-    product.favorite = !product.favorite;
-  }
-
   private chargeDataBase() {
-    this.PRODUCTS = [...productData];
-  }
-
-  ngOnInit() {
-    this.resetFilter();
+    this.productService.getProducts();
+    this.productServiceSubscription = this.productService.products$.subscribe({
+      next: (value) => {
+        this.PRODUCTS = value;
+        this.resetFilter();
+      },
+      error: (error) => console.log('Error: ' + error),
+    });
   }
 
   private changeFilter: FilterType = {
@@ -117,4 +129,8 @@ export class ProductComponent {
       this.priceHigherFilter();
     },
   };
+
+  ngOnDestroy() {
+    this.productServiceSubscription?.unsubscribe();
+  }
 }

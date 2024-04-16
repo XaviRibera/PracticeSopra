@@ -1,0 +1,83 @@
+.c-cart-list-view {
+  background-color:azure;
+  display: grid;
+  border: 1px solid black;
+  gap: 5px;
+  padding: 15px;
+  margin: 3px;
+  border-radius: 5px;
+
+  grid-template-areas:
+  'img title price'
+  'img quantity quantity';
+
+
+  @media(min-width:890px){
+    &\@tablet{
+    grid-template-areas: 'img title price quantity';
+    }
+
+  }
+
+  &__img {
+    grid-area: img;
+    width: 50px;
+  }
+
+  &__name {
+    display: flex;
+    align-items: center;
+    grid-area: title;
+  }
+
+  &__price {
+    display: flex;
+    align-items: center;
+    grid-area: price;
+  }
+
+  &__quantity {
+    grid-area: quantity;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+}
+
+.c-pill-nums{
+  display: flex;
+  align-items: center;
+  width: 120px;
+  height: 37.6px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  border-radius: 25px;
+  background-color: white;
+
+  &__add-btn{
+    width: 40px;
+    height: 100%;
+    background-color: #1AAB8A;
+    border: none;
+    border-radius: 50%;
+    color: white;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  &__number{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 100%;
+  }
+
+  &__substract-btn{
+    background-color: #dc3545;
+    width: 40px;
+    height: 100%;
+    border: none;
+    border-radius: 50%;
+    color: white;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+}

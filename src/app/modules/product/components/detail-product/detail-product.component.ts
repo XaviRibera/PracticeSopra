@@ -10,6 +10,7 @@ export class DetailProductComponent {
   @Input() product!: Product;
   @Output() deleteProduct: EventEmitter<Product> = new EventEmitter();
   @Output() changeFavorite: EventEmitter<Product> = new EventEmitter();
+  @Output() addToCart: EventEmitter<Product> = new EventEmitter();
 
   onDeleteProduct(product: Product) {
     this.deleteProduct.emit(product);
@@ -17,5 +18,9 @@ export class DetailProductComponent {
 
   onFavorite(product:Product){
     this.changeFavorite.emit(product);
+  }
+
+  onAddToCart(product: Product){
+    this.addToCart.emit(product);
   }
 }
