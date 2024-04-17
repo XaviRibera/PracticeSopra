@@ -14,6 +14,7 @@ import { StarsRatingComponent } from '../../shared/stars-rating/stars-rating.com
 import { CartComponent } from './pages/cart/cart.component';
 import { CartListViewProductComponent } from './components/cart-list-view-product/cart-list-view-product.component';
 import { NewProductFormComponent } from './pages/new-product-form/new-product-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [
@@ -31,6 +32,6 @@ import { NewProductFormComponent } from './pages/new-product-form/new-product-fo
         NewProductFormComponent,
     ],
     providers: [],
-    imports: [CommonModule, ProductRoutingModule, StarsRatingComponent]
+    imports: [CommonModule, ProductRoutingModule, StarsRatingComponent, ReactiveFormsModule]
 })
 export class ProductModule {}
