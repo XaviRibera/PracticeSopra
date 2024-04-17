@@ -13,6 +13,7 @@ import { ProductRoutingModule } from './product-routing.module';
 import { StarsRatingComponent } from '../../shared/stars-rating/stars-rating.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { CartListViewProductComponent } from './components/cart-list-view-product/cart-list-view-product.component';
+import { NewProductFormComponent } from './pages/new-product-form/new-product-form.component';
 
 @NgModule({
     declarations: [
@@ -27,6 +28,7 @@ import { CartListViewProductComponent } from './components/cart-list-view-produc
         FilterButtonComponent,
         CartComponent,
         CartListViewProductComponent,
+        NewProductFormComponent,
     ],
     providers: [],
     imports: [CommonModule, ProductRoutingModule, StarsRatingComponent]

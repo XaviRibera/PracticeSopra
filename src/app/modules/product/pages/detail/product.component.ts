@@ -28,7 +28,10 @@ export class ProductComponent {
   ];
   private productServiceSubscription: Subscription | null = null;
 
-  constructor(private productService: ProductService, private cartService: CartService) {}
+  constructor(
+    private productService: ProductService,
+    private cartService: CartService
+  ) {}
 
   ngOnInit() {
     this.chargeDataBase();
@@ -42,17 +45,13 @@ export class ProductComponent {
     this.showProduct(this.productsWithFilter[this.defaultIndexProduct]);
   }
 
-  addToCart(product: Product){
+  addToCart(product: Product) {
     this.cartService.insertProductInCart(product);
   }
 
   deleteProduct(product: Product) {
-    if (this.PRODUCTS.length > 1) {
-      this.PRODUCTS = this.PRODUCTS.filter(
-        (productMock) => productMock != product
-      );
-      this.resetFilter();
-    }
+    this.productService.deleteProduct(product);
+    this.resetFilter();
   }
 
   applyFilter(filter: string) {

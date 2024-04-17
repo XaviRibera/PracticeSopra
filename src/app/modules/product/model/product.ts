@@ -8,6 +8,6 @@ export interface Product {
   rating: number;
   description: string;
   favorite?: boolean;
-  similarProducts?: Product[];
+  similarProducts?: Product[] | null;
   reviews?: Review[] | null;
 }

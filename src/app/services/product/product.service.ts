@@ -30,6 +30,15 @@ export class ProductService {
   }
 
   deleteProduct(product: Product){
-    
+    if (this._products.length > 1) {
+      this._products = this._products.filter(
+        (productMock) => productMock != product
+      );
+    }
+    this.updateProducts();
+  }
+
+  updateProducts(){
+    this.products.next(this._products);
   }
 }
