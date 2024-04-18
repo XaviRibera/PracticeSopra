@@ -101,7 +101,7 @@ export class ProductComponent {
   }
 
   private chargeDataBase() {
-    this.productService.getProducts();
+    //this.productService.getProducts();
     this.productServiceSubscription = this.productService.products$.subscribe({
       next: (value) => {
         this.PRODUCTS = value;

@@ -17,7 +17,12 @@ export class ProductService {
 
   public products$: Observable<Product[]> = this.products.asObservable();
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) {
+    this.getProducts();
+  }
+
+  ngOnInit(){
+  }
 
   getProducts(): void {
     this.httpClient.get<Product[]>(this.apiRoute + 'products.json').subscribe({
@@ -38,7 +43,19 @@ export class ProductService {
     this.updateProducts();
   }
 
-  updateProducts(){
+  insertProduct(product: Product){
+    this._products.push(this.setRandomId(product));
+    console.log(this._products);
+    this.updateProducts();
+  }
+
+  private setRandomId(product: Product): Product{
+    product.id = 'p' + (this._products.length + 1);
+    console.log(product)
+    return product;
+  }
+
+  private updateProducts(){
     this.products.next(this._products);
   }
 }

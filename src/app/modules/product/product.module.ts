@@ -15,6 +15,7 @@ import { CartComponent } from './pages/cart/cart.component';
 import { CartListViewProductComponent } from './components/cart-list-view-product/cart-list-view-product.component';
 import { NewProductFormComponent } from './pages/new-product-form/new-product-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SimilarProductFormEntryComponent } from './components/similar-product-form-entry/similar-product-form-entry.component';
 
 @NgModule({
     declarations: [
@@ -30,6 +31,7 @@ import { ReactiveFormsModule } from '@angular/forms';
         CartComponent,
         CartListViewProductComponent,
         NewProductFormComponent,
+        SimilarProductFormEntryComponent,
     ],
     providers: [],
     imports: [CommonModule, ProductRoutingModule, StarsRatingComponent, ReactiveFormsModule]

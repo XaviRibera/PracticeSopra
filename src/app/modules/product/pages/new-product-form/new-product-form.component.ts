@@ -8,6 +8,9 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { ProductService } from 'src/app/services/product/product.service';
+import { Product } from '../../model/product';
 
 @Component({
   selector: 'app-new-product-form',
@@ -16,12 +19,12 @@ import { Router } from '@angular/router';
 })
 export class NewProductFormComponent {
   formValue: any;
-
   checkValidations: boolean = false;
   succesSend: boolean = false;
-
   currencies: string[] = ['$', '€'];
   defaultCurrency: string = this.currencies[0];
+  productsList: Product[] = [];
+  similarProducts: Product[] = [];
 
   newProductForm: FormGroup = this.formBuilder.group({
     product: [null, [Validators.required, Validators.minLength(4)]],
@@ -40,16 +43,34 @@ export class NewProductFormComponent {
       ],
     ],
     favorite: [false],
+    similarProducts: [this.similarProducts],
+    reviews: [null],
   });
+  private productServiceSubscription: Subscription | null = null;
 
-  constructor(private formBuilder: FormBuilder, private router:Router) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private productService: ProductService
+  ) {
+    this.chargeDataBase();
+  }
 
   sendNewProductInfo() {
     if (!this.checkValidations) this.checkValidations = true;
     if (this.newProductForm.invalid) return;
     this.formValue = this.newProductForm.value;
-    this.showSuccessMessage();
-    this.redirectToProduct();
+    this.submitProduct();
+    this.setSuccesPost();
+  }
+
+  setProductInSimilar(product: Product) {
+    let productPosition = this.similarProducts.findIndex((productMock) => {
+      return productMock.id === product.id;
+    });
+    productPosition !== (-1)
+      ? this.similarProducts.splice(productPosition, 1)
+      : this.similarProducts.push(product)
   }
 
   resetForm() {
@@ -66,13 +87,31 @@ export class NewProductFormComponent {
       : null;
   }
 
-  private showSuccessMessage(){
+  private submitProduct() {
+    console.log(this.formValue);
+
+    this.productService.insertProduct(this.formValue);
+  }
+
+  private showSuccessMessage() {
     this.succesSend = true;
   }
 
-  private redirectToProduct() {
-    setTimeout(() => {
-      this.router.navigateByUrl('/');
-    }, 2000);
+  private setSuccesPost() {
+    this.succesSend = true;
+  }
+
+  private chargeDataBase() {
+    //this.productService.getProducts();
+    this.productServiceSubscription = this.productService.products$.subscribe({
+      next: (value) => {
+        this.productsList = value;
+      },
+      error: (error) => console.log('Error: ' + error),
+    });
+  }
+
+  ngOnDestroy() {
+    this.productServiceSubscription?.unsubscribe();
   }
 }

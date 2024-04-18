@@ -1,0 +1,29 @@
+.c-similar-product-form-entry {
+  border-radius: 5px;
+  padding: 5px;
+  background-color: whitesmoke;
+  min-width: 200px;
+  display: grid;
+  grid-template-areas:
+  'img title title favorite'
+  'img . . price';
+
+  &__img{
+    grid-area: img;
+    width: 50px;
+    width: 50px;
+  }
+
+  &__title{
+    grid-area: title;
+  }
+
+  &__favorite{
+    grid-area: favorite;
+  }
+
+  &__price{
+    grid-area: price;
+    font-weight: bold;
+  }
+}

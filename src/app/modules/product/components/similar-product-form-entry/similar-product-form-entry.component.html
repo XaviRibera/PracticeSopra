@@ -1,0 +1,17 @@
+<div class="c-similar-product-form-entry">
+  <div class="c-similar-product-form-entry__img">
+    <img src="../assets/{{ product.id }}.png" alt="img" class="w-100" />
+  </div>
+  <div class="c-similar-product-form-entry__title">
+    {{ product.product }}
+  </div>
+  <div class="c-similar-product-form-entry__favorite">
+    <i
+      class="bi"
+      [ngClass]="!product.favorite ? 'bi-heart' : 'bi-heart-fill text-danger'"
+    ></i>
+  </div>
+  <div class="c-similar-product-form-entry__price">
+    {{ product.price }}{{ product.currency }}
+  </div>
+</div>

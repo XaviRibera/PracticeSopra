@@ -1,144 +1,187 @@
-<div class="p-4">
-  <div class="p-4 bg-secondary-subtle w-50 m-auto rounded">
-    <h2>Datos Nuevo producto</h2>
+<div class="p-4" *ngIf="!succesSend">
+  <div class="p-4 bg-secondary-subtle w-75 m-auto rounded d-flex flex-wrap">
     <form
       (ngSubmit)="sendNewProductInfo()"
       [formGroup]="newProductForm"
       autocomplete="off"
+      class="w-100"
     >
-      <div class="form-group">
-        <label for="product">Name</label>
-        <input
-          type="text"
-          class="form-control bg-transparent border-dark"
-          id="product"
-          placeholder="Nombre del producto"
-          formControlName="product"
-        />
-        <small
-          *ngIf="checkValidations"
-          id="productError"
-          class="form-text text-danger"
-        >
-          <p *ngIf="newProductForm.get('product')?.hasError('required')">
-            El campo no puede estar vacio.
-          </p>
-          <p *ngIf="newProductForm.get('product')?.hasError('minlength')">
-            Minimo 4 caracteres.
-          </p>
-        </small>
-      </div>
-      <div class="d-flex justify-content-end gap-2">
-        <div class="form-group w-100">
-          <label for="price">Percio</label>
-          <input
-            type="number"
-            class="form-control bg-transparent border-dark"
-            id="price"
-            placeholder="0"
-            formControlName="price"
-          />
-          <small
-            *ngIf="checkValidations"
-            id="priceError"
-            class="form-text text-danger"
-          >
-            <p *ngIf="newProductForm.get('price')?.hasError('required')">
-              El campo no puede estar vacio.
-            </p>
-            <p *ngIf="newProductForm.get('price')?.hasError('min')">
-              Demasiado barato, minimo 1 dinero.
-            </p>
-            <p *ngIf="newProductForm.get('price')?.hasError('max')">
-              Demasiado caro, maximo 999 dinero.
-            </p>
-          </small>
+      <div class="row">
+        <h2 class="col-12">Formulario Nuevo Producto</h2>
+        <div class="col-12 col-lg-7">
+          <div class="form-group">
+            <label for="product">Nombre *</label>
+            <input
+              type="text"
+              class="form-control bg-transparent border-dark"
+              id="product"
+              placeholder="Nombre del producto"
+              formControlName="product"
+            />
+            <small
+              *ngIf="checkValidations"
+              id="productError"
+              class="form-text text-danger"
+            >
+              <p *ngIf="newProductForm.get('product')?.hasError('required')">
+                El campo no puede estar vacio.
+              </p>
+              <p *ngIf="newProductForm.get('product')?.hasError('minlength')">
+                Minimo 4 caracteres.
+              </p>
+            </small>
+          </div>
+          <div class="d-flex justify-content-end gap-2">
+            <div class="form-group w-100">
+              <label for="price">Precio *</label>
+              <input
+                type="number"
+                class="form-control bg-transparent border-dark"
+                id="price"
+                placeholder="0"
+                formControlName="price"
+              />
+              <small
+                *ngIf="checkValidations"
+                id="priceError"
+                class="form-text text-danger"
+              >
+                <p *ngIf="newProductForm.get('price')?.hasError('required')">
+                  El campo no puede estar vacio.
+                </p>
+                <p *ngIf="newProductForm.get('price')?.hasError('min')">
+                  Demasiado barato, minimo 1 dinero.
+                </p>
+                <p *ngIf="newProductForm.get('price')?.hasError('max')">
+                  Demasiado caro, maximo 999 dinero.
+                </p>
+              </small>
+            </div>
+            <div>
+              <label for="currency">Moneda</label>
+              <select
+                class="form-select bg-transparent border-dark"
+                id="currency"
+                formControlName="currency"
+              >
+                <option
+                  *ngFor="let currency of currencies"
+                  [ngValue]="currency"
+                >
+                  {{ currency }}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="rating">Rating</label>
+            <input
+              type="number"
+              class="form-control bg-transparent border-dark"
+              id="rating"
+              placeholder="0"
+              formControlName="rating"
+            />
+            <small
+              *ngIf="checkValidations"
+              id="ratingError"
+              class="form-text text-danger"
+            >
+              <p *ngIf="newProductForm.get('rating')?.hasError('min')">
+                EL rating minimo es 0.
+              </p>
+              <p *ngIf="newProductForm.get('rating')?.hasError('max')">
+                EL rating maximo es 5.
+              </p>
+            </small>
+          </div>
+          <div class="form-group">
+            <label for="description">Descripcion *</label>
+            <textarea
+              class="form-control bg-transparent border-dark"
+              id="description"
+              placeholder="Me ha encantado el producto por..."
+              formControlName="description"
+            ></textarea>
+            <small
+              *ngIf="checkValidations"
+              id="descriptionError"
+              class="form-text text-danger"
+            >
+              <p
+                *ngIf="newProductForm.get('description')?.hasError('required')"
+              >
+                El campo no puede estar vacio.
+              </p>
+              <p
+                *ngIf="
+                  newProductForm
+                    .get('description')
+                    ?.hasError('noSpecialCharacters')
+                "
+              >
+                No se permiten caracteres especiales.
+              </p>
+            </small>
+          </div>
+          <div>
+            <label for="favorite" class="form-check-label">Favorite</label>
+            <input
+              type="checkbox"
+              class="form-check-input mx-2 border-dark"
+              id="favorite"
+              formControlName="favorite"
+            />
+          </div>
         </div>
-        <div>
-          <label for="currency">Currency</label>
-          <select class="form-select bg-transparent border-dark" id="currency" formControlName="currency">
-            <option *ngFor="let currency of currencies" [ngValue]="currency">
-              {{ currency }}
-            </option>
-          </select>
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="rating">Rating</label>
-        <input
-          type="number"
-          class="form-control bg-transparent border-dark"
-          id="rating"
-          placeholder="0"
-          formControlName="rating"
-        />
-        <small
-          *ngIf="checkValidations"
-          id="ratingError"
-          class="form-text text-danger"
+        <div
+          class="col-12 col-lg-5"
         >
-          <p *ngIf="newProductForm.get('rating')?.hasError('required')">
-            El campo no puede estar vacio.
-          </p>
-          <p *ngIf="newProductForm.get('rating')?.hasError('min')">
-            EL rating minimo es 0.
-          </p>
-          <p *ngIf="newProductForm.get('rating')?.hasError('max')">
-            EL rating maximo es 5.
-          </p>
-        </small>
-      </div>
-      <div class="form-group">
-        <label for="description">Descripcion</label>
-        <textarea
-          class="form-control bg-transparent border-dark"
-          id="description"
-          placeholder="Me ha encantado el producto por..."
-          formControlName="description"
-        ></textarea>
-        <small
-          *ngIf="checkValidations"
-          id="descriptionError"
-          class="form-text text-danger"
-        >
-          <p *ngIf="newProductForm.get('description')?.hasError('required')">
-            El campo no puede estar vacio.
-          </p>
-          <p
-            *ngIf="
-              newProductForm.get('description')?.hasError('noSpecialCharacters')
-            "
+          Select similar:
+          <div
+            *ngFor="let product of productsList; let position = index"
+            class="d-flex"
           >
-            No se permiten caracteres especiales.
-          </p>
-        </small>
-      </div>
-      <div>
-        <label for="favorite" class="form-check-label">Favorite</label>
-        <input type="checkbox" class="form-check-input mx-2 bg-transparent border-dark" id="favorite" formControlName="favorite" />
-      </div>
-      <div class="p-4 d-flex justify-content-center align-items-center gap-5">
-        <button
-          type="submit"
-          class="btn btn-primary"
-          (click)="sendNewProductInfo()"
+            <div class="d-flex justify-content-center align-items-center">
+              <input
+                type="checkbox"
+                (click)="setProductInSimilar(product)"
+                class="form-check-input mx-2 border-dark"
+              />
+            </div>
+
+            <app-similar-product-form-entry
+              [product]="product"
+              class="w-100 m-2"
+            ></app-similar-product-form-entry>
+          </div>
+        </div>
+        <div
+          class="p-4 w-100 d-flex justify-content-center align-items-center gap-5"
         >
-          Enviar
-        </button>
-        <button type="button" class="btn btn-primary" (click)="resetForm()">
-          Resetear
-        </button>
-        <a class="link-underline-primary" routerLink="/">Volver</a>
-      </div>
-      <div
-        *ngIf="succesSend"
-        class="d-flex bg-success-subtle text-succes rounded border border-5 border-success p-3 justify-content-center"
-      >
-        Enviado
+          <button type="submit" class="btn btn-primary">Enviar</button>
+          <button type="button" class="btn btn-primary" (click)="resetForm()">
+            Resetear
+          </button>
+          <a class="link-underline-primary" routerLink="/">Volver</a>
+        </div>
       </div>
     </form>
   </div>
 </div>
-<div>
-  <p *ngIf="formValue">{{ formValue | json }}</p>
+
+<div *ngIf="succesSend">
+  <section class="mail-seccess section p-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 offset-lg-3 col-12">
+          <div class="success-inner">
+            <h1><i class="bi bi-joystick"></i><span>Save success!</span></h1>
+            <p>Neew product added to list.</p>
+            <a class="btn btn-primary btn-lg" routerLink="/">DONE</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>
