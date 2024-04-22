@@ -88,8 +88,6 @@ export class NewProductFormComponent {
   }
 
   private submitProduct() {
-    console.log(this.formValue);
-
     this.productService.insertProduct(this.formValue);
   }
 

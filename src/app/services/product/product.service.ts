@@ -3,6 +3,7 @@ import { IproductContract } from '../../modules/product/interfaces/contracts/Ipr
 import { Product } from '../../modules/product/interfaces/models/Product';
 import { BehaviorSubject, Observable, map } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { ProductList } from 'src/app/modules/product/interfaces/models/ProductList';
 
 @Injectable({
   providedIn: 'root',
@@ -26,17 +27,11 @@ export class ProductService {
 
   getProducts(): void {
     this.httpClient
-      .get<Product[]>(this.apiRoute + 'products.json')
-      .pipe(
-        map((response: IproductContract[]) =>
-          response.map(
-            (productContract: IproductContract) => new Product(productContract)
-          )
-        )
-      )
+      .get<IproductContract[]>(this.apiRoute + 'products.json')
+      .pipe(map((response: IproductContract[]) => new ProductList(response)))
       .subscribe({
-        next: (products: Product[]) => {
-          this._products = products;
+        next: (products: ProductList) => {
+          this._products = products.products;
           this.products.next(this._products);
         },
         error: (error: any) => console.log('Error' + error),
