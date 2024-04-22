@@ -15,7 +15,7 @@ export class ProductService {
     Product[]
   >([]);
 
-  private _products: Product[] = [];
+  private _products!: Product[];
 
   public products$: Observable<Product[]> = this.products.asObservable();
 
@@ -49,7 +49,6 @@ export class ProductService {
 
   insertProduct(product: Product) {
     this._products.push(this.setRandomId(product));
-    console.log(this._products);
     this.updateProducts();
   }
 

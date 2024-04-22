@@ -4,6 +4,7 @@ import { Product } from '../../interfaces/models/Product';
 import { ProductService } from 'src/app/services/product/product.service';
 import { Subscription } from 'rxjs';
 import { CartService } from 'src/app/services/cart/cart.service';
+import { ProductList } from '../../interfaces/models/ProductList';
 
 type filters = 'reset' | 'expensive' | 'cheap' | 'priceLower';
 
@@ -15,7 +16,7 @@ type filters = 'reset' | 'expensive' | 'cheap' | 'priceLower';
 export class ProductComponent {
   title = 'shop';
   PRODUCTS: Product[] = [];
-  productsWithFilter!: Product[];
+  productsWithFilter: Product[] = [];
   productInUse!: Product;
   defaultIndexProduct: number = 0;
   activeFilter!: string;
