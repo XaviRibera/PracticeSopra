@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { FilterType } from '../../model/filter';
-import { Product } from '../../model/product';
+import { FilterType } from '../../interfaces/contracts/IfilterContract';
+import { Product } from '../../interfaces/contracts/IproductContract';
 import { ProductService } from 'src/app/services/product/product.service';
 import { Subscription } from 'rxjs';
 import { CartService } from 'src/app/services/cart/cart.service';

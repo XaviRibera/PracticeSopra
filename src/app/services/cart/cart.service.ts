@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { CartEntry } from 'src/app/modules/product/model/cartEntry';
-import { Product } from 'src/app/modules/product/model/product';
+import { CartEntry } from 'src/app/modules/product/interfaces/contracts/IcartEntryContract';
+import { Product } from 'src/app/modules/product/interfaces/contracts/IproductContract';
 
 @Injectable({
   providedIn: 'root',
@@ -76,7 +76,7 @@ export class CartService {
     valor && (this._operativeCart = JSON.parse(valor));
     this.operativeCart.next(this._operativeCart);
   }
-  
+
   private updateCart() {
     sessionStorage.setItem('cart', JSON.stringify(this._operativeCart));
     this.operativeCart.next(this._operativeCart);

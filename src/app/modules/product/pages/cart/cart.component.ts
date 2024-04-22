@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { CartService } from 'src/app/services/cart/cart.service';
-import { CartEntry } from '../../model/cartEntry';
-import { Product } from '../../model/product';
+import { CartEntry } from '../../interfaces/contracts/IcartEntryContract';
+import { Product } from '../../interfaces/contracts/IproductContract';
 
 @Component({
   selector: 'app-cart',

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Product } from '../../modules/product/model/product';
+import { Product } from '../../modules/product/interfaces/contracts/IproductContract';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 

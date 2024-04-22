@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Product } from '../../model/product';
+import { Product } from '../../interfaces/contracts/IproductContract';
 
 @Component({
   selector: 'app-similar-product-form-entry',

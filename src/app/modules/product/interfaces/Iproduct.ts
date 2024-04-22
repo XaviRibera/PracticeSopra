@@ -1,6 +1,6 @@
-import { Review } from './review';
+import { Review } from './models/Review';
 
-export interface Product {
+export interface Iproduct {
   id: string;
   product: string;
   price: number;
@@ -8,6 +8,6 @@ export interface Product {
   rating: number;
   description: string;
   favorite?: boolean;
-  similarProducts?: Product[] | null;
   reviews?: Review[] | null;
 }
+
