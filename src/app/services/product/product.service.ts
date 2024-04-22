@@ -11,13 +11,13 @@ import { ProductList } from 'src/app/modules/product/interfaces/models/ProductLi
 export class ProductService {
   private apiRoute: string = 'assets/data/';
 
-  private readonly products: BehaviorSubject<Product[]> = new BehaviorSubject<
-    Product[]
-  >([]);
+  private readonly products: BehaviorSubject<ProductList> = new BehaviorSubject<
+    ProductList
+  >(new ProductList([]));
 
-  private _products!: Product[];
+  private _products!: ProductList;
 
-  public products$: Observable<Product[]> = this.products.asObservable();
+  public products$: Observable<ProductList> = this.products.asObservable();
 
   constructor(private httpClient: HttpClient) {
     this.getProducts();
@@ -31,7 +31,7 @@ export class ProductService {
       .pipe(map((response: IproductContract[]) => new ProductList(response)))
       .subscribe({
         next: (products: ProductList) => {
-          this._products = products.products;
+          this._products = products;
           this.products.next(this._products);
         },
         error: (error: any) => console.log('Error' + error),
@@ -39,8 +39,8 @@ export class ProductService {
   }
 
   deleteProduct(product: Product) {
-    if (this._products.length > 1) {
-      this._products = this._products.filter(
+    if (this._products.products.length > 1) {
+      this._products.products = this._products.products.filter(
         (productMock) => productMock != product
       );
     }
@@ -48,12 +48,12 @@ export class ProductService {
   }
 
   insertProduct(product: Product) {
-    this._products.push(this.setRandomId(product));
+    this._products.products.push(this.setRandomId(product));
     this.updateProducts();
   }
 
   private setRandomId(product: Product): Product {
-    product.id = 'p' + (this._products.length + 1);
+    product.id = 'p' + (this._products.products.length + 1);
     console.log(product);
     return product;
   }

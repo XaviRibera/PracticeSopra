@@ -15,8 +15,8 @@ type filters = 'reset' | 'expensive' | 'cheap' | 'priceLower';
 })
 export class ProductComponent {
   title = 'shop';
-  PRODUCTS: Product[] = [];
-  productsWithFilter: Product[] = [];
+  PRODUCTS: ProductList = new ProductList([]);
+  productsWithFilter!: ProductList;
   productInUse!: Product;
   defaultIndexProduct: number = 0;
   activeFilter!: string;
@@ -43,7 +43,7 @@ export class ProductComponent {
   }
 
   showFirstProductInList() {
-    this.showProduct(this.productsWithFilter[this.defaultIndexProduct]);
+    this.showProduct(this.productsWithFilter.products[this.defaultIndexProduct]);
   }
 
   addToCart(product: Product) {
@@ -64,33 +64,33 @@ export class ProductComponent {
   }
 
   private expensiveFilter() {
-    this.productsWithFilter = this.PRODUCTS.filter(
+    this.productsWithFilter.products = this.PRODUCTS.products.filter(
       (productMock) => productMock.price > 2000
     );
     this.checkProductWithFilterList();
   }
 
   private cheapFilter() {
-    this.productsWithFilter = this.PRODUCTS.filter(
+    this.productsWithFilter.products = this.PRODUCTS.products.filter(
       (productMock) => productMock.price < 2000
     );
     this.checkProductWithFilterList();
   }
 
   private priceLowerFilter() {
-    this.productsWithFilter = this.PRODUCTS.slice().sort(
+    this.productsWithFilter.products = this.PRODUCTS.products.slice().sort(
       (a, b) => a.price - b.price
     );
   }
 
   private priceHigherFilter() {
-    this.productsWithFilter = this.PRODUCTS.slice().sort(
+    this.productsWithFilter.products = this.PRODUCTS.products.slice().sort(
       (a, b) => b.price - a.price
     );
   }
 
   private checkProductWithFilterList() {
-    this.productsWithFilter.length === 0
+    this.productsWithFilter.products.length === 0
       ? this.changeFilter['reset']()
       : this.showFirstProductInList();
   }

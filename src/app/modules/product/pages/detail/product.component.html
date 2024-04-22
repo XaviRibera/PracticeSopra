@@ -1,8 +1,8 @@
-<div class="container-fluid" *ngIf="PRODUCTS.length">
+<div class="container-fluid" *ngIf="PRODUCTS.products">
   <div class="row">
     <div class="col-12 col-md-3 p-0 m-0">
       <app-sidebar
-        [productsList]="productsWithFilter"
+        [productsList]="productsWithFilter.products"
         (showProductPipe)="showProduct($event)"
         (changeFilterPipe)="applyFilter($event)"
         [filtersList]="filtersList"

@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
-  FormControl,
   FormGroup,
   ValidationErrors,
   Validators,
@@ -11,6 +10,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ProductService } from 'src/app/services/product/product.service';
 import { Product } from '../../interfaces/models/Product';
+import { ProductList } from '../../interfaces/models/ProductList';
 
 @Component({
   selector: 'app-new-product-form',
@@ -23,7 +23,7 @@ export class NewProductFormComponent {
   succesSend: boolean = false;
   currencies: string[] = ['$', '€'];
   defaultCurrency: string = this.currencies[0];
-  productsList: Product[] = [];
+  productsList: ProductList = new ProductList([]);
   similarProducts: Product[] = [];
 
   newProductForm: FormGroup = this.formBuilder.group({
