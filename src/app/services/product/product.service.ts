@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Product } from '../../modules/product/interfaces/contracts/IproductContract';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { IproductContract } from '../../modules/product/interfaces/contracts/IproductContract';
+import { Product } from '../../modules/product/interfaces/models/Product';
+import { BehaviorSubject, Observable, map } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -21,20 +22,28 @@ export class ProductService {
     this.getProducts();
   }
 
-  ngOnInit(){
-  }
+  ngOnInit() {}
 
   getProducts(): void {
-    this.httpClient.get<Product[]>(this.apiRoute + 'products.json').subscribe({
-      next: (products: Product[]) => {
-        this._products = products;
-        this.products.next(this._products);
-      },
-      error: (error: any) => console.log('Error' + error),
-    });
+    this.httpClient
+      .get<Product[]>(this.apiRoute + 'products.json')
+      .pipe(
+        map((response: IproductContract[]) =>
+          response.map(
+            (productContract: IproductContract) => new Product(productContract)
+          )
+        )
+      )
+      .subscribe({
+        next: (products: Product[]) => {
+          this._products = products;
+          this.products.next(this._products);
+        },
+        error: (error: any) => console.log('Error' + error),
+      });
   }
 
-  deleteProduct(product: Product){
+  deleteProduct(product: Product) {
     if (this._products.length > 1) {
       this._products = this._products.filter(
         (productMock) => productMock != product
@@ -43,19 +52,19 @@ export class ProductService {
     this.updateProducts();
   }
 
-  insertProduct(product: Product){
+  insertProduct(product: Product) {
     this._products.push(this.setRandomId(product));
     console.log(this._products);
     this.updateProducts();
   }
 
-  private setRandomId(product: Product): Product{
+  private setRandomId(product: Product): Product {
     product.id = 'p' + (this._products.length + 1);
-    console.log(product)
+    console.log(product);
     return product;
   }
 
-  private updateProducts(){
+  private updateProducts() {
     this.products.next(this._products);
   }
 }

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Product } from '../../interfaces/contracts/IproductContract';
-import { CartEntry } from '../../interfaces/contracts/IcartEntryContract';
+import { Product } from '../../interfaces/models/Product';
+import { CartEntry } from '../../interfaces/models/CartEntry';
 
 @Component({
   selector: 'app-cart-list-view-product',

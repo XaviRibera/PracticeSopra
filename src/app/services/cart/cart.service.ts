@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { CartEntry } from 'src/app/modules/product/interfaces/contracts/IcartEntryContract';
-import { Product } from 'src/app/modules/product/interfaces/contracts/IproductContract';
+import { IcartEntry } from 'src/app/modules/product/interfaces/IcartEntry';
+import { Product } from 'src/app/modules/product/interfaces/models/Product';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
-  private _operativeCart: CartEntry[] = [];
+  private _operativeCart: IcartEntry[] = [];
 
-  private readonly operativeCart: BehaviorSubject<CartEntry[]> =
-    new BehaviorSubject<CartEntry[]>([]);
+  private readonly operativeCart: BehaviorSubject<IcartEntry[]> =
+    new BehaviorSubject<IcartEntry[]>([]);
 
-  operativeCart$: Observable<CartEntry[]> = this.operativeCart.asObservable();
+  operativeCart$: Observable<IcartEntry[]> = this.operativeCart.asObservable();
 
   constructor() {
     this.chargeSessionCart();

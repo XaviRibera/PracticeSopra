@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { FilterType } from '../../interfaces/contracts/IfilterContract';
-import { Product } from '../../interfaces/contracts/IproductContract';
+import { IfilterType } from '../../interfaces/Ifilter';
+import { Product } from '../../interfaces/models/Product';
 import { ProductService } from 'src/app/services/product/product.service';
 import { Subscription } from 'rxjs';
 import { CartService } from 'src/app/services/cart/cart.service';
@@ -14,7 +14,7 @@ type filters = 'reset' | 'expensive' | 'cheap' | 'priceLower';
 })
 export class ProductComponent {
   title = 'shop';
-  PRODUCTS!: Product[];
+  PRODUCTS: Product[] = [];
   productsWithFilter!: Product[];
   productInUse!: Product;
   defaultIndexProduct: number = 0;
@@ -111,7 +111,7 @@ export class ProductComponent {
     });
   }
 
-  private changeFilter: FilterType = {
+  private changeFilter: IfilterType = {
     reset: () => {
       this.resetFilter();
     },

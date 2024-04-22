@@ -3,7 +3,7 @@ import { Review } from '../models/Review';
 import { IproductContract } from '../contracts/IproductContract';
 import { IreviewContract } from '../contracts/IreviewContract';
 
-class Product implements Iproduct {
+export class Product implements Iproduct {
   id: string;
   product: string;
   price: number;
@@ -11,6 +11,7 @@ class Product implements Iproduct {
   rating: number;
   description: string;
   favorite: boolean;
+  similarProducts: Product[] | null;
   reviews?: Review[] | null;
 
   constructor(IproductContract: IproductContract) {
@@ -21,6 +22,7 @@ class Product implements Iproduct {
     this.rating = IproductContract.rating;
     this.description = IproductContract.description;
     this.favorite = IproductContract.favorite;
+    this.similarProducts = null;
     this.reviews = this.toReviewList(IproductContract.reviews);
   }
 

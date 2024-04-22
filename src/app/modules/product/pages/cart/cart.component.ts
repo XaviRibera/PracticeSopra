@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { CartService } from 'src/app/services/cart/cart.service';
-import { CartEntry } from '../../interfaces/contracts/IcartEntryContract';
-import { Product } from '../../interfaces/contracts/IproductContract';
+import { CartEntry } from '../../interfaces/models/CartEntry';
+import { Product } from '../../interfaces/models/Product';
 
 @Component({
   selector: 'app-cart',
@@ -31,7 +31,7 @@ export class CartComponent {
     this.cartService.deleteProductFromCart(product);
   }
 
-  resetCart(){
+  resetCart() {
     this.cartService.resetCart();
   }
 

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Product } from '../../interfaces/contracts/IproductContract';
+import { Product } from '../../interfaces/models/Product';
 
 @Component({
   selector: 'app-review-section',

@@ -1,5 +1,4 @@
-
-export interface IfilterTypeContract {
+export interface IfilterType {
   reset: () => void;
   expensive: () => void;
   cheap: () => void;

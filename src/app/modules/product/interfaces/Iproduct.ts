@@ -1,3 +1,4 @@
+import { Product } from './models/Product';
 import { Review } from './models/Review';
 
 export interface Iproduct {
@@ -8,6 +9,7 @@ export interface Iproduct {
   rating: number;
   description: string;
   favorite?: boolean;
+  similarProducts: Product[] | null;
   reviews?: Review[] | null;
 }
 

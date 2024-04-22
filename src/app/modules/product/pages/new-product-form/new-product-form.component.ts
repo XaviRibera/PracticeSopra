@@ -10,7 +10,7 @@ import {
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ProductService } from 'src/app/services/product/product.service';
-import { Product } from '../../interfaces/contracts/IproductContract';
+import { Product } from '../../interfaces/models/Product';
 
 @Component({
   selector: 'app-new-product-form',
