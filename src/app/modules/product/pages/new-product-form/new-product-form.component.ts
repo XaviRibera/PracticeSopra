@@ -9,9 +9,10 @@ import {
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ProductService } from 'src/app/services/product/product.service';
-import { Product } from '../../interfaces/models/Product';
 import { ProductList } from '../../interfaces/models/ProductList';
+import { SimilarProduct } from '../../interfaces/models/SimilarProduct';
 
+import { DetailProduct } from '../../interfaces/models/DetailProduct';
 @Component({
   selector: 'app-new-product-form',
   templateUrl: './new-product-form.component.html',
@@ -24,7 +25,7 @@ export class NewProductFormComponent {
   currencies: string[] = ['$', '€'];
   defaultCurrency: string = this.currencies[0];
   productsList: ProductList = new ProductList([]);
-  similarProducts: Product[] = [];
+  similarProducts: SimilarProduct[] = [];
 
   newProductForm: FormGroup = this.formBuilder.group({
     product: [null, [Validators.required, Validators.minLength(4)]],
@@ -64,13 +65,17 @@ export class NewProductFormComponent {
     this.setSuccesPost();
   }
 
-  setProductInSimilar(product: Product) {
+  setProductInSimilar(product: SimilarProduct) {
     let productPosition = this.similarProducts.findIndex((productMock) => {
       return productMock.id === product.id;
     });
     productPosition !== (-1)
       ? this.similarProducts.splice(productPosition, 1)
       : this.similarProducts.push(product)
+  }
+
+  transformIntoSimilar(product: DetailProduct):SimilarProduct{
+    return new SimilarProduct(product);
   }
 
   resetForm() {

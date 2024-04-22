@@ -5,6 +5,7 @@ import { ProductService } from 'src/app/services/product/product.service';
 import { Subscription } from 'rxjs';
 import { CartService } from 'src/app/services/cart/cart.service';
 import { ProductList } from '../../interfaces/models/ProductList';
+import { DetailProduct } from '../../interfaces/models/DetailProduct';
 
 type filters = 'reset' | 'expensive' | 'cheap' | 'priceLower';
 
@@ -17,7 +18,7 @@ export class ProductComponent {
   title = 'shop';
   PRODUCTS: ProductList = new ProductList([]);
   productsWithFilter!: ProductList;
-  productInUse!: Product;
+  productInUse!: DetailProduct;
   defaultIndexProduct: number = 0;
   activeFilter!: string;
   filtersList: string[] = [
@@ -38,7 +39,7 @@ export class ProductComponent {
     this.chargeDataBase();
   }
 
-  showProduct(product: Product) {
+  showProduct(product: DetailProduct) {
     this.productInUse = product;
   }
 
@@ -46,11 +47,11 @@ export class ProductComponent {
     this.showProduct(this.productsWithFilter.products[this.defaultIndexProduct]);
   }
 
-  addToCart(product: Product) {
+  addToCart(product: DetailProduct) {
     this.cartService.insertProductInCart(product);
   }
 
-  deleteProduct(product: Product) {
+  deleteProduct(product: DetailProduct) {
     this.productService.deleteProduct(product);
     this.resetFilter();
   }
@@ -59,7 +60,7 @@ export class ProductComponent {
     this.changeFilter[filter as filters]();
   }
 
-  changeFavorite(product: Product) {
+  changeFavorite(product: DetailProduct) {
     product.favorite = !product.favorite;
   }
 

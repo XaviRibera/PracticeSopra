@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Product } from '../../interfaces/models/Product';
+import { DetailProduct } from '../../interfaces/models/DetailProduct';
 
 @Component({
   selector: 'app-list-view-product',
@@ -7,12 +7,12 @@ import { Product } from '../../interfaces/models/Product';
   styleUrls: ['./list-view-product.component.scss'],
 })
 export class ListViewProductComponent {
-  @Input() product!: Product;
-  @Output() showProduct: EventEmitter<Product> = new EventEmitter();
+  @Input() product!: DetailProduct;
+  @Output() showProduct: EventEmitter<DetailProduct> = new EventEmitter();
 
   isSelected: boolean = false;
 
-  listViewProductClicked(product: Product) {
+  listViewProductClicked(product: DetailProduct) {
     this.isSelected = true;
     this.showProduct.emit(product);
   }

@@ -9,7 +9,5 @@ export interface Iproduct {
   rating: number;
   description: string;
   favorite?: boolean;
-  similarProducts: Product[] | null;
-  reviews?: Review[] | null;
 }
 

@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { CartService } from 'src/app/services/cart/cart.service';
-import { CartEntry } from '../../interfaces/models/CartEntry';
 import { Product } from '../../interfaces/models/Product';
+import { CartEntry } from '../../interfaces/models/CartEntry';
+import { DetailProduct } from '../../interfaces/models/DetailProduct';
 
 @Component({
   selector: 'app-cart',
@@ -19,15 +20,15 @@ export class CartComponent {
     this.chargeDataBase();
   }
 
-  addQuantityCartEntry(product: Product) {
+  addQuantityCartEntry(product: DetailProduct) {
     this.cartService.addQuantityProduct(product);
   }
 
-  substractQuantityCarEntry(product: Product) {
+  substractQuantityCarEntry(product: DetailProduct) {
     this.cartService.substractQuantityProduct(product);
   }
 
-  deleteCartEntry(product: Product) {
+  deleteCartEntry(product: DetailProduct) {
     this.cartService.deleteProductFromCart(product);
   }
 

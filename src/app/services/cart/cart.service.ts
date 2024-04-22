@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { IcartEntry } from 'src/app/modules/product/interfaces/IcartEntry';
+import { DetailProduct } from 'src/app/modules/product/interfaces/models/DetailProduct';
 import { Product } from 'src/app/modules/product/interfaces/models/Product';
 
 @Injectable({
@@ -18,12 +19,12 @@ export class CartService {
     this.chargeSessionCart();
   }
 
-  insertProductInCart(product: Product) {
+  insertProductInCart(product: DetailProduct) {
     this.addProductToList(product);
     this.addQuantityProduct(product);
   }
 
-  addProductToList(product: Product) {
+  addProductToList(product: DetailProduct) {
     if (
       this._operativeCart.find(
         (cartEntry) => cartEntry.product.id === product.id
@@ -33,7 +34,7 @@ export class CartService {
     this._operativeCart.push({ product: product, quantity: 0 });
   }
 
-  addQuantityProduct(product: Product) {
+  addQuantityProduct(product: DetailProduct) {
     this._operativeCart.forEach((cartEntry) => {
       if (cartEntry.product.id === product.id) {
         cartEntry.quantity += 1;
@@ -42,7 +43,7 @@ export class CartService {
     this.updateCart();
   }
 
-  substractQuantityProduct(product: Product) {
+  substractQuantityProduct(product: DetailProduct) {
     let currentQuantity = this._operativeCart.find(
       (cartEntry) => cartEntry.product.id === product.id
     )?.quantity;
@@ -59,7 +60,7 @@ export class CartService {
     this.updateCart();
   }
 
-  deleteProductFromCart(product: Product) {
+  deleteProductFromCart(product: DetailProduct) {
     this._operativeCart = this._operativeCart.filter(
       (cartEntryMock) => cartEntryMock.product.id !== product.id
     );

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Product } from '../../interfaces/models/Product';
+import { SimilarProduct } from '../../interfaces/models/SimilarProduct';
 
 @Component({
   selector: 'app-similar-product',
@@ -7,7 +7,7 @@ import { Product } from '../../interfaces/models/Product';
   styleUrls: ['./similar-product.component.scss'],
 })
 export class SimilarProductComponent {
-  @Input() similarProduct!: Product;
+  @Input() similarProduct!: SimilarProduct;
   @Output() showProduct: EventEmitter<string> = new EventEmitter();
 
   clickedShowProduct(id: string) {

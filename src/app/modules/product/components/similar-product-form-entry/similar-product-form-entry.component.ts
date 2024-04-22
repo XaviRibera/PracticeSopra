@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Product } from '../../interfaces/models/Product';
+import { SimilarProduct } from '../../interfaces/models/SimilarProduct';
 
 @Component({
   selector: 'app-similar-product-form-entry',
@@ -7,9 +7,7 @@ import { Product } from '../../interfaces/models/Product';
   styleUrls: ['./similar-product-form-entry.component.scss'],
 })
 export class SimilarProductFormEntryComponent {
-  @Input() product!: Product;
-
-  constructor() {}
+  @Input() product!: SimilarProduct;
 
 
 }

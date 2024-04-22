@@ -4,6 +4,7 @@ import { Product } from '../../modules/product/interfaces/models/Product';
 import { BehaviorSubject, Observable, map } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { ProductList } from 'src/app/modules/product/interfaces/models/ProductList';
+import { DetailProduct } from 'src/app/modules/product/interfaces/models/DetailProduct';
 
 @Injectable({
   providedIn: 'root',
@@ -38,7 +39,7 @@ export class ProductService {
       });
   }
 
-  deleteProduct(product: Product) {
+  deleteProduct(product: DetailProduct) {
     if (this._products.products.length > 1) {
       this._products.products = this._products.products.filter(
         (productMock) => productMock != product
@@ -47,12 +48,12 @@ export class ProductService {
     this.updateProducts();
   }
 
-  insertProduct(product: Product) {
+  insertProduct(product: DetailProduct) {
     this._products.products.push(this.setRandomId(product));
     this.updateProducts();
   }
 
-  private setRandomId(product: Product): Product {
+  private setRandomId(product: DetailProduct): DetailProduct {
     product.id = 'p' + (this._products.products.length + 1);
     console.log(product);
     return product;

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Product } from '../../interfaces/models/Product';
+import { DetailProduct } from '../../interfaces/models/DetailProduct';
 
 @Component({
   selector: 'app-detail-product',
@@ -7,20 +8,20 @@ import { Product } from '../../interfaces/models/Product';
   styleUrls: ['./detail-product.component.scss'],
 })
 export class DetailProductComponent {
-  @Input() product!: Product;
-  @Output() deleteProduct: EventEmitter<Product> = new EventEmitter();
-  @Output() changeFavorite: EventEmitter<Product> = new EventEmitter();
-  @Output() addToCart: EventEmitter<Product> = new EventEmitter();
+  @Input() product!: DetailProduct;
+  @Output() deleteProduct: EventEmitter<DetailProduct> = new EventEmitter();
+  @Output() changeFavorite: EventEmitter<DetailProduct> = new EventEmitter();
+  @Output() addToCart: EventEmitter<DetailProduct> = new EventEmitter();
 
-  onDeleteProduct(product: Product) {
+  onDeleteProduct(product: DetailProduct) {
     this.deleteProduct.emit(product);
   }
 
-  onFavorite(product:Product){
+  onFavorite(product:DetailProduct){
     this.changeFavorite.emit(product);
   }
 
-  onAddToCart(product: Product){
+  onAddToCart(product: DetailProduct){
     this.addToCart.emit(product);
   }
 }

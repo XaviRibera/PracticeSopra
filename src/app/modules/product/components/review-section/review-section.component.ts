@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Product } from '../../interfaces/models/Product';
+import { DetailProduct } from '../../interfaces/models/DetailProduct';
 
 @Component({
   selector: 'app-review-section',
@@ -7,5 +7,5 @@ import { Product } from '../../interfaces/models/Product';
   styleUrls: ['./review-section.component.scss']
 })
 export class ReviewSectionComponent {
-  @Input() product!:Product;
+  @Input() product!:DetailProduct;
 }

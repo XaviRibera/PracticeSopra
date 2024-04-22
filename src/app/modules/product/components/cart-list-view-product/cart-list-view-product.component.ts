@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Product } from '../../interfaces/models/Product';
 import { CartEntry } from '../../interfaces/models/CartEntry';
+import { DetailProduct } from '../../interfaces/models/DetailProduct';
 
 @Component({
   selector: 'app-cart-list-view-product',
@@ -9,19 +9,19 @@ import { CartEntry } from '../../interfaces/models/CartEntry';
 })
 export class CartListViewProductComponent {
   @Input() cartEntry!: CartEntry;
-  @Output() substractQuantity: EventEmitter<Product> = new EventEmitter();
-  @Output() addQuantity: EventEmitter<Product> = new EventEmitter();
-  @Output() deleteCartEntity: EventEmitter<Product> = new EventEmitter();
+  @Output() substractQuantity: EventEmitter<DetailProduct> = new EventEmitter();
+  @Output() addQuantity: EventEmitter<DetailProduct> = new EventEmitter();
+  @Output() deleteCartEntity: EventEmitter<DetailProduct> = new EventEmitter();
 
-  onSubstractQuantity(product: Product) {
+  onSubstractQuantity(product: DetailProduct) {
     this.substractQuantity.emit(product);
   }
 
-  onAddQuantity(product: Product) {
+  onAddQuantity(product: DetailProduct) {
     this.addQuantity.emit(product);
   }
 
-  onDeleteCartEntry(product: Product) {
+  onDeleteCartEntry(product: DetailProduct) {
     this.deleteCartEntity.emit(product);
   }
 }
