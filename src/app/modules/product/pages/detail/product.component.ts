@@ -7,8 +7,6 @@ import { CartService } from 'src/app/services/cart/cart.service';
 import { ProductList } from '../../interfaces/models/ProductList';
 import { DetailProduct } from '../../interfaces/models/DetailProduct';
 
-type filters = 'reset' | 'expensive' | 'cheap' | 'priceLower';
-
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
@@ -17,7 +15,7 @@ type filters = 'reset' | 'expensive' | 'cheap' | 'priceLower';
 export class ProductComponent {
   title = 'shop';
   PRODUCTS: ProductList = new ProductList([]);
-  productsWithFilter!: ProductList;
+  productsWithFilter: DetailProduct[] = [];
   productInUse!: DetailProduct;
   defaultIndexProduct: number = 0;
   activeFilter!: string;
@@ -28,6 +26,7 @@ export class ProductComponent {
     'priceHigher',
     'reset',
   ];
+
   private productServiceSubscription: Subscription | null = null;
 
   constructor(
@@ -44,7 +43,7 @@ export class ProductComponent {
   }
 
   showFirstProductInList() {
-    this.showProduct(this.productsWithFilter.products[this.defaultIndexProduct]);
+    this.showProduct(this.productsWithFilter[this.defaultIndexProduct]);
   }
 
   addToCart(product: DetailProduct) {
@@ -56,49 +55,28 @@ export class ProductComponent {
     this.resetFilter();
   }
 
-  applyFilter(filter: string) {
-    this.changeFilter[filter as filters]();
-  }
-
   changeFavorite(product: DetailProduct) {
     product.favorite = !product.favorite;
   }
 
-  private expensiveFilter() {
-    this.productsWithFilter.products = this.PRODUCTS.products.filter(
-      (productMock) => productMock.price > 2000
-    );
+  applyFilter(filter: string) {
+    this.productsWithFilter = this.PRODUCTS.applyFilter(filter);
+    this.activeFilter = filter === 'reset' ? '' : filter;
     this.checkProductWithFilterList();
-  }
-
-  private cheapFilter() {
-    this.productsWithFilter.products = this.PRODUCTS.products.filter(
-      (productMock) => productMock.price < 2000
-    );
-    this.checkProductWithFilterList();
-  }
-
-  private priceLowerFilter() {
-    this.productsWithFilter.products = this.PRODUCTS.products.slice().sort(
-      (a, b) => a.price - b.price
-    );
-  }
-
-  private priceHigherFilter() {
-    this.productsWithFilter.products = this.PRODUCTS.products.slice().sort(
-      (a, b) => b.price - a.price
-    );
   }
 
   private checkProductWithFilterList() {
-    this.productsWithFilter.products.length === 0
-      ? this.changeFilter['reset']()
+    this.productsWithFilter.length === 0
+      ? () => {
+          this.applyFilter('reset');
+          this.activeFilter = '';
+        }
       : this.showFirstProductInList();
   }
 
   private resetFilter() {
     this.activeFilter = '';
-    this.productsWithFilter = this.PRODUCTS;
+    this.productsWithFilter = this.PRODUCTS.applyFilter('reset');
     this.showFirstProductInList();
   }
 
@@ -108,28 +86,11 @@ export class ProductComponent {
       next: (value) => {
         this.PRODUCTS = value;
         this.resetFilter();
+        console.log(this.PRODUCTS)
       },
       error: (error) => console.log('Error: ' + error),
     });
   }
-
-  private changeFilter: IfilterType = {
-    reset: () => {
-      this.resetFilter();
-    },
-    expensive: () => {
-      this.expensiveFilter();
-    },
-    cheap: () => {
-      this.cheapFilter();
-    },
-    priceLower: () => {
-      this.priceLowerFilter();
-    },
-    priceHigher: () => {
-      this.priceHigherFilter();
-    },
-  };
 
   ngOnDestroy() {
     this.productServiceSubscription?.unsubscribe();

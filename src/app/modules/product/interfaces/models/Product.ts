@@ -2,6 +2,7 @@ import { Iproduct } from '../Iproduct';
 import { Review } from '../models/Review';
 import { IproductContract } from '../contracts/IproductContract';
 import { IreviewContract } from '../contracts/IreviewContract';
+import { SimilarProduct } from './SimilarProduct';
 
 export class Product implements Iproduct {
   id: string;
@@ -11,7 +12,7 @@ export class Product implements Iproduct {
   rating: number;
   description: string;
   favorite: boolean;
-  similarProducts: Product[] | null;
+  similarProducts?: SimilarProduct[] | null;
   reviews?: Review[] | null;
 
   constructor(IproductContract: IproductContract) {
@@ -22,7 +23,7 @@ export class Product implements Iproduct {
     this.rating = IproductContract.rating;
     this.description = IproductContract.description;
     this.favorite = IproductContract.favorite;
-    this.similarProducts = null;
+    this.similarProducts = IproductContract.similarProducts;
     this.reviews = this.toReviewList(IproductContract.reviews);
   }
 

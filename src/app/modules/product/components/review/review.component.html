@@ -2,6 +2,6 @@
   <div class="c-card-review__profile"><i class="bi bi-person-square"></i></div>
   <div class="c-card-review__nickname">{{review.name}}</div>
   <div class="c-card-review__date">{{review.date}}</div>
-  <app-stars-rating [object]="review"></app-stars-rating>
+  <app-stars-rating [rating]="review.rating"></app-stars-rating>
   <div class="c-card-review__review c-card-review__review@tablet">{{review.opinion}}</div>
 </div>

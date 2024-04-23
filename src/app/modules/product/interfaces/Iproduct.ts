@@ -1,6 +1,3 @@
-import { Product } from './models/Product';
-import { Review } from './models/Review';
-
 export interface Iproduct {
   id: string;
   product: string;

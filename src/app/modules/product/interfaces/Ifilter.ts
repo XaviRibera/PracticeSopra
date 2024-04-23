@@ -1,7 +1,9 @@
+import { DetailProduct } from "./models/DetailProduct";
+
 export interface IfilterType {
-  reset: () => void;
-  expensive: () => void;
-  cheap: () => void;
-  priceLower: () => void;
-  priceHigher: () => void;
+  reset: () => DetailProduct[];
+  expensive: () => DetailProduct[];
+  cheap: () => DetailProduct[];
+  priceLower: () => DetailProduct[];
+  priceHigher: () => DetailProduct[];
 }

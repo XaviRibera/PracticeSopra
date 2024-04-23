@@ -1,7 +1,8 @@
+import { IfilterType } from "../Ifilter";
 import { IsimilarProduct } from "../IsimilarProduct";
 import { DetailProduct } from "./DetailProduct";
 
-export class SimilarProduct implements IsimilarProduct{
+export class SimilarProduct implements IsimilarProduct {
   id: string;
   product: string;
   price: number;
@@ -10,12 +11,16 @@ export class SimilarProduct implements IsimilarProduct{
   description: string;
   favorite?: boolean | undefined;
 
-  constructor(detailProduct: DetailProduct){
+
+  constructor(detailProduct: DetailProduct) {
     this.id = detailProduct.id;
     this.product = detailProduct.product;
-    this. price = detailProduct.price;
+    this.price = detailProduct.price;
     this.currency = detailProduct.currency;
     this.rating = detailProduct.rating;
     this.description = detailProduct.description;
+    this.favorite = detailProduct.favorite;
   }
+
+
 }

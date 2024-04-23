@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./stars-rating.component.scss'],
 })
 export class StarsRatingComponent {
-  @Input() object!: any;
+  @Input() rating!: number;
   truncRating!: number;
   allStars!: string[];
   templateColorRating!: string;
@@ -39,7 +39,7 @@ export class StarsRatingComponent {
 
   private changeStarColor() {
     this.colorRanges.forEach((value, key) => {
-      if (this.object.rating <= key) {
+      if (this.rating <= key) {
         this.templateColorRating = value;
         return;
       }
@@ -61,12 +61,12 @@ export class StarsRatingComponent {
   }
 
   private setHalfStar() {
-    if (this.object.rating - this.truncRating > 0) {
+    if (this.rating - this.truncRating > 0) {
       this.allStars[this.truncRating] = 'bi-star-half';
     }
   }
 
   private calculateFillStars(): number {
-    return Math.trunc(this.object.rating);
+    return Math.trunc(this.rating);
   }
 }

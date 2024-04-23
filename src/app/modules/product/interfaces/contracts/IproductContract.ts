@@ -1,4 +1,3 @@
-import { Iproduct } from '../Iproduct';
 import { IreviewContract } from './IreviewContract';
 
 export interface IproductContract {
@@ -9,6 +8,6 @@ export interface IproductContract {
   rating: number;
   description: string;
   favorite: boolean;
-  similarProducts?: Iproduct[] | null;
+  similarProducts: IproductContract[] | null;
   reviews?: IreviewContract[] | null;
 }
