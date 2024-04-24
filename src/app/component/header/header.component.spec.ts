@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HeaderComponent } from './header.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { AppModule } from 'src/app/app.module';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -8,7 +10,8 @@ describe('HeaderComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [HeaderComponent]
+      declarations: [HeaderComponent],
+      imports: [AppModule],
     });
     fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;
@@ -19,3 +22,5 @@ describe('HeaderComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+export { HeaderComponent };
+

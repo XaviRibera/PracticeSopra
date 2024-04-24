@@ -40,8 +40,8 @@ export class ProductService {
   }
 
   deleteProduct(product: DetailProduct) {
-    if (this._products.products.length > 1) {
-      this._products.products = this._products.products.filter(
+    if (this._products.all.length > 1) {
+      this._products.all = this._products.all.filter(
         (productMock) => productMock != product
       );
     }
@@ -49,12 +49,12 @@ export class ProductService {
   }
 
   insertProduct(product: DetailProduct) {
-    this._products.products.push(this.setRandomId(product));
+    this._products.all.push(this.setRandomId(product));
     this.updateProducts();
   }
 
   private setRandomId(product: DetailProduct): DetailProduct {
-    product.id = 'p' + (this._products.products.length + 1);
+    product.id = 'p' + (this._products.all.length + 1);
     console.log(product);
     return product;
   }

@@ -12,11 +12,11 @@ export class AboutService {
   private readonly aboutCards: BehaviorSubject<cardDescription[]> =
     new BehaviorSubject<cardDescription[]>([]);
 
-  public aboutCards$: Observable<any[]> = this.aboutCards.asObservable();
+  aboutCards$: Observable<any[]> = this.aboutCards.asObservable();
 
   constructor(private httpClient: HttpClient) {}
 
-  getAboutCards(): void {
+  getAboutCards(){
     this.httpClient
       .get<cardDescription[]>(this.apiRoute + 'about.json')
       .subscribe({

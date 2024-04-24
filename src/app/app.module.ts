@@ -26,4 +26,5 @@ import { HeaderInterceptor } from './interceptors/header.interceptor';
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+}

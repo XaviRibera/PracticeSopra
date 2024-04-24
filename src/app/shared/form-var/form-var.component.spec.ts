@@ -8,7 +8,6 @@ describe('FormVarComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [FormVarComponent]
     });
     fixture = TestBed.createComponent(FormVarComponent);
     component = fixture.componentInstance;

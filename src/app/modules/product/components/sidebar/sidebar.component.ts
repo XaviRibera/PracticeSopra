@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Product } from '../../interfaces/models/Product';
 import { DetailProduct } from '../../interfaces/models/DetailProduct';
+import { ProductList } from '../../interfaces/models/ProductList';
 
 @Component({
   selector: 'app-sidebar',
@@ -8,7 +9,7 @@ import { DetailProduct } from '../../interfaces/models/DetailProduct';
   styleUrls: ['./sidebar.component.scss'],
 })
 export class SidebarComponent {
-  @Input() productsList!: DetailProduct[];
+  @Input() productList!: ProductList;
   @Input() filtersList!: string[];
   @Input() activeFilter!: string;
   @Output() changeFilterPipe: EventEmitter<string> = new EventEmitter();

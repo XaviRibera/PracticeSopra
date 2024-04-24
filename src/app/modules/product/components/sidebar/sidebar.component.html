@@ -9,7 +9,7 @@
   </div>
   <div>
     <div class="fw-bold my-2">Products:</div>
-    <div *ngFor="let product of productsList">
+    <div *ngFor="let product of productList.filtered">
       <app-list-view-product
         [product]="product"
         (showProduct)="showProduct(product)"

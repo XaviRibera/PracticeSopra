@@ -1,40 +1,40 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 
 @Component({
   selector: 'app-stars-rating',
   standalone: true,
-  imports: [ CommonModule ],
+  imports: [CommonModule],
   templateUrl: './stars-rating.component.html',
   styleUrls: ['./stars-rating.component.scss'],
 })
-export class StarsRatingComponent {
+export class StarsRatingComponent implements OnChanges {
   @Input() rating!: number;
+  @Input() max: number = 5;
+  min: number = 0;
   truncRating!: number;
   allStars!: string[];
   templateColorRating!: string;
-  colorRanges: Map<number, string> = new Map();
+  colorRanges: Map<number, string> = new Map<number, string>([
+    [5, 'text-success'],
+    [4, 'text-warning'],
+    [3, 'text-danger'],
+  ]);
 
   constructor() {
-    this.setColorRanges();
     this.setEmptyStarsInAllStars();
   }
 
-  private setColorRanges() {
-    this.setKeyValueInHashMap(5, 'text-success');
-    this.setKeyValueInHashMap(4, 'text-warning');
-    this.setKeyValueInHashMap(3, 'text-danger');
-  }
-
-  private setKeyValueInHashMap(key: number, value: string) {
-    this.colorRanges.set(key, value);
-  }
-
-  private ngOnChanges() {
+  ngOnChanges() {
+    this.rating = this.topAndMinFilter(this.rating);
     this.truncRating = this.calculateFillStars();
     this.changeStarColor();
     this.refillFillStars();
+  }
+
+  private topAndMinFilter(rating: number): number {
+    if (rating >= this.min && rating <= this.max) return rating;
+    return rating - this.max > this.min ? this.max : this.min;
   }
 
   private changeStarColor() {
@@ -47,7 +47,7 @@ export class StarsRatingComponent {
   }
 
   private setEmptyStarsInAllStars() {
-    this.allStars = new Array(5).fill('bi-star');
+    this.allStars = new Array(this.max).fill('bi-star');
   }
 
   private refillFillStars() {

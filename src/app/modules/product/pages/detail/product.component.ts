@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { IfilterType } from '../../interfaces/Ifilter';
-import { Product } from '../../interfaces/models/Product';
 import { ProductService } from 'src/app/services/product/product.service';
 import { Subscription } from 'rxjs';
 import { CartService } from 'src/app/services/cart/cart.service';
@@ -15,7 +13,6 @@ import { DetailProduct } from '../../interfaces/models/DetailProduct';
 export class ProductComponent {
   title = 'shop';
   PRODUCTS: ProductList = new ProductList([]);
-  productsWithFilter: DetailProduct[] = [];
   productInUse!: DetailProduct;
   defaultIndexProduct: number = 0;
   activeFilter!: string;
@@ -43,7 +40,7 @@ export class ProductComponent {
   }
 
   showFirstProductInList() {
-    this.showProduct(this.productsWithFilter[this.defaultIndexProduct]);
+    this.showProduct(this.PRODUCTS.filtered[this.defaultIndexProduct]);
   }
 
   addToCart(product: DetailProduct) {
@@ -60,13 +57,13 @@ export class ProductComponent {
   }
 
   applyFilter(filter: string) {
-    this.productsWithFilter = this.PRODUCTS.applyFilter(filter);
+    this.PRODUCTS.applyFilter(filter);
     this.activeFilter = filter === 'reset' ? '' : filter;
     this.checkProductWithFilterList();
   }
 
   private checkProductWithFilterList() {
-    this.productsWithFilter.length === 0
+    this.PRODUCTS.filtered.length === 0
       ? () => {
           this.applyFilter('reset');
           this.activeFilter = '';
@@ -76,7 +73,7 @@ export class ProductComponent {
 
   private resetFilter() {
     this.activeFilter = '';
-    this.productsWithFilter = this.PRODUCTS.applyFilter('reset');
+    this.PRODUCTS.applyFilter('reset');
     this.showFirstProductInList();
   }
 

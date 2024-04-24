@@ -5,20 +5,22 @@ import { Product } from './Product';
 
 type filters = 'reset' | 'expensive' | 'cheap' | 'priceLower';
 export class ProductList {
-  products!: DetailProduct[];
+  all: DetailProduct[] = [];
+  filtered: DetailProduct[] = [];
+
   constructor(productsContractList: IproductContract[]) {
-    this.products = productsContractList.map(
+    this.all = productsContractList.map(
       (productContract) => new DetailProduct(productContract)
     );
   }
 
-  applyFilter(filter: string): DetailProduct[] {
-    return this.changeFilter[filter as filters]();
+  applyFilter(filter: string) {
+    this.filtered = this.changeFilter[filter as filters]();
   }
 
   private changeFilter: IfilterType = {
     reset: () => {
-      return this.resetFilter();
+      return this.all;
     },
     expensive: () => {
       return this.expensiveFilter();
@@ -34,23 +36,27 @@ export class ProductList {
     },
   };
 
-  private resetFilter(): DetailProduct[] {
-    return this.products;
-  }
-
   private expensiveFilter(): DetailProduct[] {
-    return this.products.filter((productMock) => productMock.price > 2000);
+    return this.all.filter((productMock) => productMock.price > 2000);
   }
 
   private cheapFilter(): DetailProduct[] {
-    return this.products.filter((productMock) => productMock.price < 2000);
+    return this.all.filter((productMock) => productMock.price < 2000);
   }
 
   private priceLowerFilter(): DetailProduct[] {
-    return this.products.slice().sort((a, b) => a.price - b.price);
+    return this.all
+      .slice()
+      .sort(
+        (productMock1, productMock2) => productMock1.price - productMock2.price
+      );
   }
 
   private priceHigherFilter(): DetailProduct[] {
-    return this.products.slice().sort((a, b) => b.price - a.price);
+    return this.all
+      .slice()
+      .sort(
+        (productMock1, productMock2) => productMock2.price - productMock1.price
+      );
   }
 }

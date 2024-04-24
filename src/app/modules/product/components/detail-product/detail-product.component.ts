@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Product } from '../../interfaces/models/Product';
 import { DetailProduct } from '../../interfaces/models/DetailProduct';
 
 @Component({
@@ -13,15 +12,15 @@ export class DetailProductComponent {
   @Output() changeFavorite: EventEmitter<DetailProduct> = new EventEmitter();
   @Output() addToCart: EventEmitter<DetailProduct> = new EventEmitter();
 
-  onDeleteProduct(product: DetailProduct) {
-    this.deleteProduct.emit(product);
+  onDeleteProduct() {
+    this.deleteProduct.emit(this.product);
   }
 
-  onFavorite(product:DetailProduct){
-    this.changeFavorite.emit(product);
+  onFavorite(){
+    this.changeFavorite.emit(this.product);
   }
 
-  onAddToCart(product: DetailProduct){
-    this.addToCart.emit(product);
+  onAddToCart(){
+    this.addToCart.emit(this.product);
   }
 }

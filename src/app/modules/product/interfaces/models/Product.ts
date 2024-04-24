@@ -23,11 +23,21 @@ export class Product implements Iproduct {
     this.rating = IproductContract.rating;
     this.description = IproductContract.description;
     this.favorite = IproductContract.favorite;
-    this.similarProducts = IproductContract.similarProducts;
+    this.similarProducts = this.toSimilarProductList(IproductContract.similarProducts);
     this.reviews = this.toReviewList(IproductContract.reviews);
   }
 
-  toReviewList(IreviewContracts?: IreviewContract[] | null): Review[] | null | undefined {
-    return IreviewContracts?.map((reviewContrat) => new Review(reviewContrat));
+  toReviewList(
+    ireviewContracts?: IreviewContract[] | null
+  ): Review[] | null | undefined {
+    return ireviewContracts?.map((reviewContrat) => new Review(reviewContrat));
+  }
+
+  toSimilarProductList(
+    iproductContract?: IproductContract[] | null
+  ): SimilarProduct[] | null | undefined {
+    return iproductContract?.map(
+      (productContract) => new SimilarProduct(productContract)
+    );
   }
 }

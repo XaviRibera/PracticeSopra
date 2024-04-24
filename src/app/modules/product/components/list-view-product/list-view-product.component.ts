@@ -8,12 +8,10 @@ import { DetailProduct } from '../../interfaces/models/DetailProduct';
 })
 export class ListViewProductComponent {
   @Input() product!: DetailProduct;
+  @Input() isSelected: boolean = false;
   @Output() showProduct: EventEmitter<DetailProduct> = new EventEmitter();
 
-  isSelected: boolean = false;
-
-  listViewProductClicked(product: DetailProduct) {
-    this.isSelected = true;
-    this.showProduct.emit(product);
+  onShowProduct() {
+    this.showProduct.emit(this.product);
   }
 }
