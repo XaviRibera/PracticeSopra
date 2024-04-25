@@ -1,16 +1,14 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { StarsRatingComponent } from './stars-rating.component';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { By } from '@angular/platform-browser';
 
 fdescribe('StarsRatingComponent', () => {
   let component: StarsRatingComponent;
   let fixture: ComponentFixture<StarsRatingComponent>;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      schemas: [NO_ERRORS_SCHEMA],
-    });
+    TestBed.configureTestingModule({});
     fixture = TestBed.createComponent(StarsRatingComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -59,7 +57,7 @@ fdescribe('StarsRatingComponent', () => {
       'bi-star',
       'bi-star',
     ]);
-  })
+  });
 
   it('should refill correctly the stars array', () => {
     component.rating = 3;
@@ -83,5 +81,5 @@ fdescribe('StarsRatingComponent', () => {
       'bi-star-half',
       'bi-star',
     ]);
-  })
+  });
 });

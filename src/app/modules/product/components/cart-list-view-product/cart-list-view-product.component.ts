@@ -11,17 +11,17 @@ export class CartListViewProductComponent {
   @Input() cartEntry!: CartEntry;
   @Output() substractQuantity: EventEmitter<DetailProduct> = new EventEmitter();
   @Output() addQuantity: EventEmitter<DetailProduct> = new EventEmitter();
-  @Output() deleteCartEntity: EventEmitter<DetailProduct> = new EventEmitter();
+  @Output() deleteProductFromCart: EventEmitter<DetailProduct> = new EventEmitter();
 
-  onSubstractQuantity(product: DetailProduct) {
-    this.substractQuantity.emit(product);
+  onSubstractQuantity() {
+    this.substractQuantity.emit(this.cartEntry.product);
   }
 
-  onAddQuantity(product: DetailProduct) {
-    this.addQuantity.emit(product);
+  onAddQuantity() {
+    this.addQuantity.emit(this.cartEntry.product);
   }
 
-  onDeleteCartEntry(product: DetailProduct) {
-    this.deleteCartEntity.emit(product);
+  onDeleteProductFromCart() {
+    this.deleteProductFromCart.emit(this.cartEntry.product);
   }
 }

@@ -12,7 +12,7 @@
     <div *ngFor="let product of productList.filtered">
       <app-list-view-product
         [product]="product"
-        (showProduct)="showProduct(product)"
+        (showProduct)="onShowProduct(product)"
         [ngClass]=""
       ></app-list-view-product>
     </div>

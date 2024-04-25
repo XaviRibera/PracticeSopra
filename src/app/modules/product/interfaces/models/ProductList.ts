@@ -1,7 +1,6 @@
 import { IfilterType } from '../Ifilter';
 import { IproductContract } from '../contracts/IproductContract';
 import { DetailProduct } from './DetailProduct';
-import { Product } from './Product';
 
 type filters = 'reset' | 'expensive' | 'cheap' | 'priceLower';
 export class ProductList {

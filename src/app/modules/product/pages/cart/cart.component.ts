@@ -28,7 +28,7 @@ export class CartComponent {
     this.cartService.substractQuantityProduct(product);
   }
 
-  deleteCartEntry(product: DetailProduct) {
+  deleteProductFromCart(product: DetailProduct) {
     this.cartService.deleteProductFromCart(product);
   }
 

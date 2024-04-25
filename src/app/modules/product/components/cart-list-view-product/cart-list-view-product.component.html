@@ -10,12 +10,12 @@
   </div>
   <div class="c-cart-list-view__quantity">
     <div class="c-pill-nums">
-      <button class="c-pill-nums__substract-btn" (click)="onSubstractQuantity(cartEntry.product)">-</button>
+      <button class="c-pill-nums__substract-btn" (click)="onSubstractQuantity()">-</button>
       <div class="c-pill-nums__number">{{ cartEntry.quantity }}</div>
-      <button class="c-pill-nums__add-btn" (click)="onAddQuantity(cartEntry.product)">+</button>
+      <button class="c-pill-nums__add-btn" (click)="onAddQuantity()">+</button>
     </div>
     <div class="d-flex align-items-center">
-      <button class="btn btn-danger" (click)="onDeleteCartEntry(cartEntry.product)"><i class="bi bi-trash3"></i></button>
+      <button class="btn btn-danger" (click)="onDeleteProductFromCart()"><i class="bi bi-trash3"></i></button>
     </div>
   </div>
 </div>
