@@ -12,7 +12,7 @@ export class AboutService {
   private readonly aboutCards: BehaviorSubject<cardDescription[]> =
     new BehaviorSubject<cardDescription[]>([]);
 
-  aboutCards$: Observable<any[]> = this.aboutCards.asObservable();
+  aboutCards$: Observable<cardDescription[]> = this.aboutCards.asObservable();
 
   constructor(private httpClient: HttpClient) {}
 

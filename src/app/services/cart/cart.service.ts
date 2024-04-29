@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { IcartEntry } from 'src/app/modules/product/interfaces/IcartEntry';
 import { DetailProduct } from 'src/app/modules/product/interfaces/models/DetailProduct';
-import { Product } from 'src/app/modules/product/interfaces/models/Product';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +14,9 @@ export class CartService {
 
   operativeCart$: Observable<IcartEntry[]> = this.operativeCart.asObservable();
 
-  constructor() {
+  constructor() {}
+
+  ngOnInit() {
     this.chargeSessionCart();
   }
 

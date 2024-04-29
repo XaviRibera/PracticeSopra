@@ -8,7 +8,7 @@ import { AboutService } from 'src/app/services/about/about.service';
   styleUrls: ['./about.component.scss'],
 })
 export class AboutComponent {
-  cardAbout!: cardDescription[];
+  cardAbout: cardDescription[] = [];
 
   constructor(private aboutService: AboutService) {}
 

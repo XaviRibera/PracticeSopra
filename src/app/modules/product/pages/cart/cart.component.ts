@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { CartService } from 'src/app/services/cart/cart.service';
-import { Product } from '../../interfaces/models/Product';
 import { CartEntry } from '../../interfaces/models/CartEntry';
 import { DetailProduct } from '../../interfaces/models/DetailProduct';
 
